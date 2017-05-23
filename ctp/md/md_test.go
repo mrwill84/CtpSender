@@ -41,6 +41,10 @@ func TestMdLogin(t *testing.T) {
 	CTP.MdApi.RegisterFront(CTP.MdFront)
 	CTP.MdApi.Init()
 
-	CTP.MdApi.Join()
-	CTP.MdApi.Release()
+	go func() {
+		CTP.MdApi.Join()
+		CTP.MdApi.Release()
+	}()
+
+	
 }

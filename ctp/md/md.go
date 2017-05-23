@@ -3,7 +3,6 @@ package md
 import (
 	"flag"
 	"log"
-
 	"sync"
 
 	"github.com/mrwill84/goctp"
