@@ -35,14 +35,12 @@ func TestMdLogin(t *testing.T) {
 
 	log.Printf("客户端配置: %+#v\n", CTP)
 
-	go func() {
-		pMdSpi := goctp.NewDirectorCThostFtdcMdSpi(&GoCThostFtdcMdSpi{Client: CTP})
+	pMdSpi := goctp.NewDirectorCThostFtdcMdSpi(&GoCThostFtdcMdSpi{Client: CTP})
 
-		CTP.MdApi.RegisterSpi(pMdSpi)
-		CTP.MdApi.RegisterFront(CTP.MdFront)
-		CTP.MdApi.Init()
+	CTP.MdApi.RegisterSpi(pMdSpi)
+	CTP.MdApi.RegisterFront(CTP.MdFront)
+	CTP.MdApi.Init()
 
-		CTP.MdApi.Join()
-		CTP.MdApi.Release()
-	}()
+	CTP.MdApi.Join()
+	CTP.MdApi.Release()
 }
