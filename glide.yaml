@@ -1,0 +1,3 @@
+package: git.dev.com/ctp_sender
+import:
+- package: github.com/mrwill84/goctp

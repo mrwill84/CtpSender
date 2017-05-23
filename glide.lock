@@ -1,0 +1,6 @@
+hash: a3b65d5acd0af6dab833722718c927fb00619dd18b9742f34f0ee6411ac9e30a
+updated: 2017-05-22T17:55:01.240890061+08:00
+imports:
+- name: github.com/mrwill84/goctp
+  version: 6f9e1d2c8f02d140d0304661cc6ba02fe6592dc3
+testImports: []
