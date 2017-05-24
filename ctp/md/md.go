@@ -90,8 +90,8 @@ func (p *GoCThostFtdcMdSpi) ReqUserLogin() (interface{}, error) {
 		req.SetBrokerID(p.Client.BrokerID)
 		req.SetUserID(p.Client.InvestorID)
 		req.SetPassword(p.Client.Password)
-		requestID := p.Client.GetMdRequestID()
-		iResult := p.Client.MdApi.ReqUserLogin(req, p.Client.GetMdRequestID())
+		requestID := id
+		iResult := p.Client.MdApi.ReqUserLogin(req, requestID)
 
 		if iResult == 0 {
 			log.Println("发送用户登录请求: 成功.")
