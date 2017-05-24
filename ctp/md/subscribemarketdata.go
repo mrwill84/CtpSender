@@ -1,17 +1,18 @@
 package md
+
 import (
 	"log"
 
 	"github.com/mrwill84/CtpSender/ctp/async"
 
-	"fmt"
-
 	"github.com/mrwill84/goctp"
 )
+
 var (
-	currentRequestID int 
-	subSlice[]string
+	currentRequestID int
+	subSlice         []string
 )
+
 func (p *GoCThostFtdcMdSpi) SubscribeMarketData(instruments []string) (interface{}, error) {
 
 	id := p.Client.GetMdRequestID()
@@ -22,8 +23,8 @@ func (p *GoCThostFtdcMdSpi) SubscribeMarketData(instruments []string) (interface
 			return
 		}
 		log.Println("发送用户登录请求: 失败.")
-	}
-	return obj ,err
+	})
+	return obj, err
 }
 func (p *GoCThostFtdcMdSpi) OnRspSubMarketData(pSpecificInstrument goctp.CThostFtdcSpecificInstrumentField, pRspInfo goctp.CThostFtdcRspInfoField, nRequestID int, bIsLast bool) {
 	//log.Printf("GoCThostFtdcMdSpi.OnRspSubMarketData: %#v %#v %#v\n", pSpecificInstrument.GetInstrumentID(), nRequestID, bIsLast)
@@ -32,9 +33,9 @@ func (p *GoCThostFtdcMdSpi) OnRspSubMarketData(pSpecificInstrument goctp.CThostF
 			subSlice = []string{}
 		}
 		if !bIsLast {
-			subSlice = append(subSlice,pSpecificInstrument.GetInstrumentID() )
-		}else{
-			subSlice = append(subSlice,pSpecificInstrument.GetInstrumentID() )
+			subSlice = append(subSlice, pSpecificInstrument.GetInstrumentID())
+		} else {
+			subSlice = append(subSlice, pSpecificInstrument.GetInstrumentID())
 			currentRequestID = nRequestID
 			async.Put(nRequestID, subSlice, nil)
 		}
