@@ -27,11 +27,13 @@ func Rsponse(id int) {
 }
 
 func TestAsync(t *testing.T) {
-	go Rsponse(0)
-	obj, err := Request(0)
-	if err != nil {
-		panic(err)
+	for id := 0; id < 10; id++ {
+		go Rsponse(id)
+		obj, err := Request(id)
+		if err != nil {
+			panic(err)
+		}
+		assert.Equal(t, 9, obj.test)
 	}
-	assert.Equal(t, 9, obj.test)
 
 }

@@ -27,7 +27,7 @@ func TestMdLogin(t *testing.T) {
 		InvestorID: "2000052",
 		Password:   "276988",
 
-		MdFront: "tcp://101.230.8.33:41213",
+		MdFront: "tcp://112.65.23.99:41213",
 		MdApi:   goctp.CThostFtdcMdApiCreateFtdcMdApi(),
 		//TraderFront: *trade_front,
 		//TraderApi:   goctp.CThostFtdcTraderApiCreateFtdcTraderApi(),
