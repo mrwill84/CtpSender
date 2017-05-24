@@ -4,21 +4,21 @@
 class GoMdSpi: public CThostFtdcMdSpi{
     public:
         GoMdSpi(){
-             std::cout<<"GoMdSpi" <<std::endl
+             std::cout<<"GoMdSpi" <<std::endl;
         }
         virtual void OnFrontConnected(){
-            std::cout<<"OnFrontConnected" <<std::endl
-        };
+            std::cout<<"OnFrontConnected" <<std::endl;
+        }
 };
 int main(){
-    GoMdSpi* pSpi = new GoMdSpi()
+    GoMdSpi* pSpi = new GoMdSpi();
     std::cout<<"hello world"<<std::endl;
     CThostFtdcMdApi * api = CreateFtdcMdApi("");
-    api->RegisterSpi(pSpi)
-	api->RegisterFront("tcp://101.230.8.33:41213")
-	api->Init()
+    api->RegisterSpi(pSpi);
+	api->RegisterFront("tcp://101.230.8.33:41213");
+	api->Init();
 
-	api->Join()
-	api->Release()
+	api->Join();
+	api->Release();
     return 0;
 }
