@@ -8,7 +8,7 @@ const char* context[] ={
 
 class GoMdSpi: public CThostFtdcMdSpi{
     public:
-        GoMdSpi(){
+        GoMdSpi(CThostFtdcMdApi * papi):m_api(papi){
              std::cout<<"GoMdSpi" <<std::endl;
         }
         virtual void OnFrontConnected(){
@@ -19,9 +19,10 @@ class GoMdSpi: public CThostFtdcMdSpi{
         CThostFtdcMdApi * m_api;
 };
 int main(){
-    GoMdSpi* pSpi = new GoMdSpi();
-    std::cout<<"hello world"<<std::endl;
     CThostFtdcMdApi * api = CThostFtdcMdApi::CreateFtdcMdApi();
+    GoMdSpi* pSpi = new GoMdSpi(api);
+    std::cout<<"hello world"<<std::endl;
+    
     api->RegisterSpi(pSpi);
 	api->RegisterFront((char*)"tcp://101.230.8.33:41213");
 	api->Init();
