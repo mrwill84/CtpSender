@@ -30,7 +30,7 @@ type GoCTPClient struct {
 
 	MdRequestID     int
 	TraderRequestID int
-	FrontendConnent chan bool{} 
+	FrontendConnent chan bool
 }
 
 func (g *GoCTPClient) GetMdRequestID() int {
@@ -40,9 +40,9 @@ func (g *GoCTPClient) GetMdRequestID() int {
 
 func NewDirectorCThostFtdcMdSpi(v interface{}) goctp.CThostFtdcMdSpi {
 
-	 mdspi:= goctp.NewDirectorCThostFtdcMdSpi(v)
-	 mdspi.FrontendConnent=make(chan bool,1)
-	 return 
+	mdspi := goctp.NewDirectorCThostFtdcMdSpi(v)
+	mdspi.FrontendConnent = make(chan bool, 1)
+	return
 }
 
 type GoCThostFtdcMdSpi struct {
@@ -65,7 +65,7 @@ func (p *GoCThostFtdcMdSpi) OnHeartBeatWarning(nTimeLapse int) {
 
 func (p *GoCThostFtdcMdSpi) OnFrontConnected() {
 	log.Println("GoCThostFtdcMdSpi.OnFrontConnected.")
-	mdspi.FrontendConnent<-true
+	mdspi.FrontendConnent <- true
 	//p.ReqUserLogin()
 }
 
