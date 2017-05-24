@@ -34,8 +34,8 @@ func TestMdLogin(t *testing.T) {
 	}
 
 	log.Printf("客户端配置: %+#v\n", CTP)
-	p := &GoCThostFtdcMdSpi{Client: CTP}
-	pMdSpi := goctp.NewDirectorCThostFtdcMdSpi(p)
+
+	pMdSpi := goctp.NewDirectorCThostFtdcMdSpi(&GoCThostFtdcMdSpi{Client: CTP})
 
 	CTP.MdApi.RegisterSpi(pMdSpi)
 	CTP.MdApi.RegisterFront(CTP.MdFront)
@@ -47,8 +47,8 @@ func TestMdLogin(t *testing.T) {
 	}()
 	c := <-CTP.FrontendConnent
 	if c == true {
-		if spi, ok := pMdSpi.(*GoCThostFtdcMdSpi); ok == true {
-			rsp, err := p.ReqUserLogin()
+		if spi, ok := pMdSpi.DirectorInterface().(*GoCThostFtdcMdSpi); ok == true {
+			rsp, err := spi.ReqUserLogin()
 			fmt.Println(rsp, err)
 		}
 
