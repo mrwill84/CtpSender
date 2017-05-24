@@ -47,7 +47,10 @@ func TestMdLogin(t *testing.T) {
 	}()
 	c := <-CTP.FrontendConnent
 	if c == true {
-		rsp, err := pMdSpi.ReqUserLogin()
-		fmt.Println(rsp, err)
+		if spi, ok := pMdSpi.(*GoCThostFtdcMdSpi); ok == true {
+			rsp, err := spi.ReqUserLogin()
+			fmt.Println(rsp, err)
+		}
+
 	}
 }
