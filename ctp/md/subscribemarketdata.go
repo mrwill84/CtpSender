@@ -37,7 +37,7 @@ func (p *GoCThostFtdcMdSpi) OnRspSubMarketData(pSpecificInstrument goctp.CThostF
 		} else {
 			subSlice = append(subSlice, pSpecificInstrument.GetInstrumentID())
 			currentRequestID = nRequestID
-			async.Put(nRequestID, subSlice, nil)
+			async.Put(1, subSlice, nil)
 		}
 	}
 }

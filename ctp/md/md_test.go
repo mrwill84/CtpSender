@@ -5,6 +5,8 @@ import (
 	"log"
 	"testing"
 
+	"time"
+
 	"github.com/mrwill84/goctp"
 )
 
@@ -21,7 +23,7 @@ func TestMapGochan(t *testing.T) {
 func TestMdLogin(t *testing.T) {
 
 	CTP = GoCTPClient{
-		BrokerID:   "0",
+		BrokerID:   "0189",
 		InvestorID: "2000052",
 		Password:   "276988",
 
@@ -54,6 +56,8 @@ func TestMdLogin(t *testing.T) {
 			instruments, err := spi.SubscribeMarketData([]string{"rb1710", "rb1709"})
 			sym := instruments.([]string)
 			fmt.Println(sym, err)
+			time.Sleep(10 * time.Second)
 		}
 	}
+
 }
