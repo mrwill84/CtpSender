@@ -1,3 +1,4 @@
+include <stdio.h>
 #include <iostream>
 #include "ThostFtdcMdApi.h"
 
@@ -17,8 +18,8 @@ class GoMdSpi: public CThostFtdcMdSpi{
             std::cout<<"OnFrontConnected" <<std::endl;
             CThostFtdcReqUserLoginField field;
             strcpy(field.BrokerID,"0189") ;
-            strcpy(UserID,"2000052") ;
-            strcpy(Password,"276988");
+            strcpy(field.UserID,"2000052") ;
+            strcpy(field.Password,"276988");
             m_api->ReqUserLogin(&field,10);
             //m_api->SubscribeMarketData(context,2);
         }
@@ -26,7 +27,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
             m_api->SubscribeMarketData(context,2);
         }
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
-            std::cout<<pDepthMarketData->InstrumentName<<std::endl;
+            std::cout<<pDepthMarketData->InstrumentID<<std::endl;
         };
     private:
         CThostFtdcMdApi * m_api;
