@@ -105,7 +105,7 @@ func (p *GoCThostFtdcMdSpi) ReqUserLogin() (interface{}, error) {
 }
 
 func (p *GoCThostFtdcMdSpi) OnRspUserLogin(pRspUserLogin goctp.CThostFtdcRspUserLoginField, pRspInfo goctp.CThostFtdcRspInfoField, nRequestID int, bIsLast bool) {
-
+	fmt.Println("OnRspUserLogin", nRequestID)
 	if bIsLast && !p.IsErrorRspInfo(pRspInfo) {
 		async.Put(nRequestID, pRspUserLogin, nil)
 		return
