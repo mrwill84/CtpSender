@@ -13,9 +13,9 @@ class GoMdSpi: public CThostFtdcMdSpi{
 int main(){
     GoMdSpi* pSpi = new GoMdSpi();
     std::cout<<"hello world"<<std::endl;
-    CThostFtdcMdApi * api = CreateFtdcMdApi("");
+    CThostFtdcMdApi * api = CThostFtdcMdApi::CreateFtdcMdApi("");
     api->RegisterSpi(pSpi);
-	api->RegisterFront("tcp://101.230.8.33:41213");
+	api->RegisterFront((char*)"tcp://101.230.8.33:41213");
 	api->Init();
 
 	api->Join();
