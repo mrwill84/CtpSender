@@ -1,6 +1,7 @@
 package async
 
 import "sync"
+import "fmt"
 
 type resultChan struct {
 	Result chan interface{}
@@ -46,6 +47,9 @@ func Put(requestID int, obj interface{}, err error) {
 	if err != nil {
 		resultMap[requestID].Err <- err
 		return
+	}
+	for i, cx := range resultMap {
+		fmt.Println("put", i, cx, requestID)
 	}
 	resultMap[requestID].Result <- obj
 }
