@@ -35,9 +35,6 @@ type GoCTPClient struct {
 	FrontendConnent chan bool
 }
 
-func init() {
-	CTP.FrontendConnent = make(chan bool, 1)
-}
 func (g *GoCTPClient) GetMdRequestID() int {
 	g.MdRequestID += 1
 	return g.MdRequestID
@@ -69,7 +66,11 @@ func (p *GoCThostFtdcMdSpi) OnHeartBeatWarning(nTimeLapse int) {
 
 func (p *GoCThostFtdcMdSpi) OnFrontConnected() {
 	log.Println("GoCThostFtdcMdSpi.OnFrontConnected.")
-	CTP.FrontendConnent <- true
+	if CTP.FrontendConnent {
+		CTP.FrontendConnent <- true
+		return
+	}
+	panic("never")
 	//p.ReqUserLogin()
 }
 

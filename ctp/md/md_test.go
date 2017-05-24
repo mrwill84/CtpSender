@@ -31,6 +31,7 @@ func TestMdLogin(t *testing.T) {
 		//TraderApi:   goctp.CThostFtdcTraderApiCreateFtdcTraderApi(),
 		MdRequestID:     0,
 		TraderRequestID: 0,
+		FrontendConnent: make(chan bool, 1),
 	}
 
 	log.Printf("客户端配置: %+#v\n", CTP)
