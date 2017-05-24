@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <cstring>
 #include <iostream>
 #include "ThostFtdcMdApi.h"
 
@@ -17,9 +17,9 @@ class GoMdSpi: public CThostFtdcMdSpi{
         virtual void OnFrontConnected(){
             std::cout<<"OnFrontConnected" <<std::endl;
             CThostFtdcReqUserLoginField field;
-            strcpy(field.BrokerID,"0189") ;
-            strcpy(field.UserID,"2000052") ;
-            strcpy(field.Password,"276988");
+            std::strcpy(field.BrokerID,"0189") ;
+             std::strcpy(field.UserID,"2000052") ;
+             std::strcpy(field.Password,"276988");
             m_api->ReqUserLogin(&field,10);
             //m_api->SubscribeMarketData(context,2);
         }
