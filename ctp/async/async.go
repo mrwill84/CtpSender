@@ -19,15 +19,15 @@ func init() {
 // Alloc is for alloc new chan
 func Alloc(requestID int, req func()) (interface{}, error) {
 	res := new(resultChan)
-	res.Result = make(chan interface{})
-	res.Err = make(chan error)
+	res.Result = make(chan interface{}, 1)
+	res.Err = make(chan error, 1)
 	rdmtx.Lock()
 	resultMap[requestID] = res
-	defer func() {
-		rdmtx.Lock()
-		delete(resultMap, requestID)
-		rdmtx.Unlock()
-	}()
+	//defer func() {
+	//	rdmtx.Lock()
+	//	delete(resultMap, requestID)
+	//	rdmtx.Unlock()
+	//}()
 	rdmtx.Unlock()
 	go req()
 	select {
