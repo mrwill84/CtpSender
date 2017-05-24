@@ -24,6 +24,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
             //m_api->SubscribeMarketData(context,2);
         }
         virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
+            std::cout<<"OnRspUserLogin"<<nRequestID<<std::endl;
             m_api->SubscribeMarketData(context,2);
         }
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
