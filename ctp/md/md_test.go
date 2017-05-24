@@ -51,7 +51,9 @@ func TestMdLogin(t *testing.T) {
 		if spi, ok := pMdSpi.DirectorInterface().(*GoCThostFtdcMdSpi); ok == true {
 			rsp, err := spi.ReqUserLogin()
 			fmt.Println(rsp, err)
+			instruments, err := spi.SubscribeMarketData([]string{"rb1710", "rb1709"})
+			sym := instruments.([]string)
+			fmt.Println(sym, err)
 		}
-
 	}
 }
