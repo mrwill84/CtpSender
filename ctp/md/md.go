@@ -92,6 +92,7 @@ func (p *GoCThostFtdcMdSpi) ReqUserLogin() (interface{}, error) {
 		req.SetUserID(p.Client.InvestorID)
 		req.SetPassword(p.Client.Password)
 		requestID := id
+		fmt.Println("ReqUserLogin(req, requestID)", requestID)
 		iResult := p.Client.MdApi.ReqUserLogin(req, requestID)
 
 		if iResult == 0 {
