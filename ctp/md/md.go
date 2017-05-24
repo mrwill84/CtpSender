@@ -36,8 +36,9 @@ type GoCTPClient struct {
 }
 
 func (g *GoCTPClient) GetMdRequestID() int {
+	x := g.MdRequestID
 	g.MdRequestID += 1
-	return g.MdRequestID
+	return x
 }
 
 func NewDirectorCThostFtdcMdSpi(v interface{}) goctp.CThostFtdcMdSpi {
