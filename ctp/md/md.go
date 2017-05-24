@@ -66,7 +66,7 @@ func (p *GoCThostFtdcMdSpi) OnHeartBeatWarning(nTimeLapse int) {
 
 func (p *GoCThostFtdcMdSpi) OnFrontConnected() {
 	log.Println("GoCThostFtdcMdSpi.OnFrontConnected.")
-	if CTP.FrontendConnent {
+	if CTP.FrontendConnent != nil {
 		CTP.FrontendConnent <- true
 		return
 	}
