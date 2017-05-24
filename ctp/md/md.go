@@ -33,6 +33,9 @@ type GoCTPClient struct {
 	FrontendConnent chan bool
 }
 
+func init() {
+	CTP.FrontendConnent = make(chan bool, 1)
+}
 func (g *GoCTPClient) GetMdRequestID() int {
 	g.MdRequestID += 1
 	return g.MdRequestID
@@ -41,7 +44,7 @@ func (g *GoCTPClient) GetMdRequestID() int {
 func NewDirectorCThostFtdcMdSpi(v interface{}) goctp.CThostFtdcMdSpi {
 
 	mdspi := goctp.NewDirectorCThostFtdcMdSpi(v)
-	mdspi.FrontendConnent = make(chan bool, 1)
+
 	return
 }
 
@@ -65,7 +68,7 @@ func (p *GoCThostFtdcMdSpi) OnHeartBeatWarning(nTimeLapse int) {
 
 func (p *GoCThostFtdcMdSpi) OnFrontConnected() {
 	log.Println("GoCThostFtdcMdSpi.OnFrontConnected.")
-	mdspi.FrontendConnent <- true
+	CTP.FrontendConnent <- true
 	//p.ReqUserLogin()
 }
 
