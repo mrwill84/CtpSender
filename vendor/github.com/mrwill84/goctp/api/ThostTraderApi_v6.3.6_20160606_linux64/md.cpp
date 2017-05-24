@@ -1,10 +1,12 @@
 #include <iostream>
 #include "ThostFtdcMdApi.h"
 
-const char* context[] ={
+  char* context[] ={
     "rb1701",
     "rb1701"
-}
+};
+
+
 
 class GoMdSpi: public CThostFtdcMdSpi{
     public:
@@ -13,8 +15,19 @@ class GoMdSpi: public CThostFtdcMdSpi{
         }
         virtual void OnFrontConnected(){
             std::cout<<"OnFrontConnected" <<std::endl;
-            m_api->SubscribeMarketData(context)
+            CThostFtdcReqUserLoginField field;
+            strcpy(field.BrokerID,"0189") ;
+            strcpy(UserID,"2000052") ;
+            strcpy(Password,"276988");
+            m_api->ReqUserLogin(&field,10);
+            //m_api->SubscribeMarketData(context,2);
         }
+        virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
+            m_api->SubscribeMarketData(context,2);
+        }
+        virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
+            std::cout<<pDepthMarketData->InstrumentName<<std::endl;
+        };
     private:
         CThostFtdcMdApi * m_api;
 };
