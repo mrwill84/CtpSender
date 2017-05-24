@@ -3,7 +3,6 @@ package md
 import (
 	"flag"
 	"log"
-	"sync"
 
 	"github.com/mrwill84/goctp"
 )
@@ -31,8 +30,7 @@ type GoCTPClient struct {
 
 	MdRequestID     int
 	TraderRequestID int
-	Rsps            map[int]chan interface{}
-	Rdmtx           sync.RWMutex
+	FrontendConnent chan bool{} 
 }
 
 func (g *GoCTPClient) GetMdRequestID() int {
@@ -42,7 +40,9 @@ func (g *GoCTPClient) GetMdRequestID() int {
 
 func NewDirectorCThostFtdcMdSpi(v interface{}) goctp.CThostFtdcMdSpi {
 
-	return goctp.NewDirectorCThostFtdcMdSpi(v)
+	 mdspi:= goctp.NewDirectorCThostFtdcMdSpi(v)
+	 mdspi.FrontendConnent=make(chan bool,1)
+	 return 
 }
 
 type GoCThostFtdcMdSpi struct {
@@ -60,11 +60,13 @@ func (p *GoCThostFtdcMdSpi) OnFrontDisconnected(nReason int) {
 
 func (p *GoCThostFtdcMdSpi) OnHeartBeatWarning(nTimeLapse int) {
 	log.Printf("GoCThostFtdcMdSpi.OnHeartBeatWarning: %v", nTimeLapse)
+
 }
 
 func (p *GoCThostFtdcMdSpi) OnFrontConnected() {
 	log.Println("GoCThostFtdcMdSpi.OnFrontConnected.")
-	p.ReqUserLogin()
+	mdspi.FrontendConnent<-true
+	//p.ReqUserLogin()
 }
 
 func (p *GoCThostFtdcMdSpi) IsErrorRspInfo(pRspInfo goctp.CThostFtdcRspInfoField) bool {

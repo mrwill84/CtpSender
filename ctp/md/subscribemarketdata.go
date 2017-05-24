@@ -28,7 +28,7 @@ func (p *GoCThostFtdcMdSpi) OnRspSubMarketData(pSpecificInstrument goctp.CThostF
 	//log.Printf("GoCThostFtdcMdSpi.OnRspSubMarketData: %#v %#v %#v\n", pSpecificInstrument.GetInstrumentID(), nRequestID, bIsLast)
 	if !p.IsErrorRspInfo(pRspInfo) {
 		if currentRequestID != nRequestID {
-			subSlice = []string
+			subSlice = []string{}
 		}
 		if !bIsLast {
 			subSlice = append(subSlice,pSpecificInstrument.GetInstrumentID() )

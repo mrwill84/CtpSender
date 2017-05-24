@@ -45,6 +45,9 @@ func TestMdLogin(t *testing.T) {
 		CTP.MdApi.Join()
 		CTP.MdApi.Release()
 	}()
-
-	
+	c := <-CTP.FrontendConnent
+	if c == true {
+		rsp, err := pMdSpi.ReqUserLogin()
+		fmt.Println(rsp, err)
+	}
 }
