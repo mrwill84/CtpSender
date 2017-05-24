@@ -17,7 +17,7 @@ func (p *GoCThostFtdcMdSpi) SubscribeMarketData(instruments []string) (interface
 
 	id := p.Client.GetMdRequestID()
 	obj, err := async.Alloc(id, func() {
-		iResult := goctp.SubscribeMarketData(instruments)
+		iResult := p.Client.MdApi.SubscribeMarketData(instruments)
 		if iResult == 0 {
 			log.Println("发送用户登录请求: 成功.")
 			return

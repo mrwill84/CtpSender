@@ -43,9 +43,8 @@ func (g *GoCTPClient) GetMdRequestID() int {
 
 func NewDirectorCThostFtdcMdSpi(v interface{}) goctp.CThostFtdcMdSpi {
 
-	mdspi := goctp.NewDirectorCThostFtdcMdSpi(v)
+	return goctp.NewDirectorCThostFtdcMdSpi(v)
 
-	return
 }
 
 type GoCThostFtdcMdSpi struct {
