@@ -10,7 +10,7 @@ import (
 	"github.com/mrwill84/goctp"
 )
 
-func (p *GoCThostFtdcMdSpi) ReqUserLogin() {
+func (p *GoCThostFtdcMdSpi) ReqUserLogin() (interface{}, error) {
 	id := p.Client.GetMdRequestID()
 	obj, err := async.Alloc(id, func() {
 		log.Println("GoCThostFtdcMdSpi.ReqUserLogin.")
@@ -27,7 +27,7 @@ func (p *GoCThostFtdcMdSpi) ReqUserLogin() {
 		}
 		log.Println("发送用户登录请求: 失败.")
 	})
-
+	return obj, err
 }
 
 func (p *GoCThostFtdcMdSpi) OnRspUserLogin(pRspUserLogin goctp.CThostFtdcRspUserLoginField, pRspInfo goctp.CThostFtdcRspInfoField, nRequestID int, bIsLast bool) {
