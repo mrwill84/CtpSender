@@ -30,6 +30,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
         virtual void OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
               std::cout<<"OnRspSettlementInfoConfirm"<<nRequestID<<std::endl;
             CThostFtdcQryInstrumentField field;
+            memset(&field,0,sizeof(CThostFtdcQryInstrumentField));
             m_api->ReqQryInstrument(&field,12);
         }
         virtual void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
