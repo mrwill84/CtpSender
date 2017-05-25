@@ -23,7 +23,13 @@ class GoMdSpi: public CThostFtdcMdSpi{
         }
         virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             std::cout<<"OnRspUserLogin"<<nRequestID<<std::endl;
-            m_api->SubscribeMarketData(context,2);
+
+            std::ifstream filein("instrument.csv");
+
+            for (std::string line; std::getline(filein, line); )
+            {
+               m_api->SubscribeMarketData((char**)&line.c_str(),1);
+            }
         }
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
             std::cout<<pDepthMarketData->InstrumentID<<std::endl;
