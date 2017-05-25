@@ -3,8 +3,6 @@
 #include "ThostFtdcMdApi.h"
 
   char* context[] ={
-    "rb1701",
-    "rb1701"
 };
 
 
