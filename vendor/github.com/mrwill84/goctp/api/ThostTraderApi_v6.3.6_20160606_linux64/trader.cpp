@@ -41,16 +41,16 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
 };
 int main(){
     
-    CThostFtdcTraderApi* trader_api=CThostFtdcTraderApi::CreateFtdcTraderApi("")
+    CThostFtdcTraderApi* trader_api=CThostFtdcTraderApi::CreateFtdcTraderApi("");
     GoTraderSpi* pSpi = new GoTraderSpi(trader_api);
     std::cout<<"hello world"<<std::endl;
     trader_api->RegisterSpi(pSpi);                         // 注册事件类
-	trader_api->SubscribePublicTopic(0 /*THOST_TERT_RESTART*/)  // 注册公有流
-	trader_api->SubscribePrivateTopic(0 /*THOST_TERT_RESTART*/) // 注册私有流
-	trader_api->RegisterFront("tcp://101.230.8.33:41205")
-	trader_api->Init()
+	trader_api->SubscribePublicTopic(0 /*THOST_TERT_RESTART*/);  // 注册公有流
+	trader_api->SubscribePrivateTopic(0 /*THOST_TERT_RESTART*/); // 注册私有流
+	trader_api->RegisterFront("tcp://101.230.8.33:41205");
+	trader_api->Init();
 
-	trader_api->Join()
-	trader_api->Release()
-    return 0
+	trader_api->Join();
+	trader_api->Release();
+    return 0;
 }
