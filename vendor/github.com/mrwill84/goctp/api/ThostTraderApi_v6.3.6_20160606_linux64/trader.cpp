@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <fstream>
 #include "ThostFtdcTraderApi.h"
 
   char* context[] ={};
@@ -39,7 +40,12 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
                 std::cout<<pRspInfo->ErrorMsg<<std::endl;
             }
             if (pInstrument) {
+                std::ofstream of("instrument.csv",std::ios::trunc);
+                of<<pInstrument->InstrumentID<<std::endl;
                 std::cout<<pInstrument->InstrumentID<<std::endl;
+                if (bIsLast){
+                    of.close();
+                }
             }
         }
     private:
