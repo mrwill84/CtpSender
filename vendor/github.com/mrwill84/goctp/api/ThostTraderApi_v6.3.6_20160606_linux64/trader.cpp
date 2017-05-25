@@ -40,7 +40,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
                 std::cout<<pRspInfo->ErrorMsg<<std::endl;
             }
             if (pInstrument) {
-                std::ofstream of("instrument.csv",std::ios::trunc);
+                std::ofstream of("instrument.csv",std::ios::app);
                 of<<pInstrument->InstrumentID<<std::endl;
                 std::cout<<pInstrument->InstrumentID<<std::endl;
                 if (bIsLast){
