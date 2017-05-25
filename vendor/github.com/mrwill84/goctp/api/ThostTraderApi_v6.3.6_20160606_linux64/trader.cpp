@@ -34,6 +34,9 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
         }
         virtual void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             std::cout<<"OnRspQryInstrument"<<nRequestID<<std::endl;
+            if (pRspInfo!=NULL){
+                std::cout<<pRspInfo->ErrorMsg<<std::endl;
+            }
             if (pInstrument) {
                 std::cout<<pInstrument->InstrumentID<<std::endl;
             }
