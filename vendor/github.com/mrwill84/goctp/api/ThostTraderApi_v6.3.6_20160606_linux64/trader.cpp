@@ -24,12 +24,12 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             std::cout<<"OnRspUserLogin"<<nRequestID<<std::endl;
             CThostFtdcSettlementInfoConfirmField field;
             std::strcpy(field.BrokerID,"0189");
-            std::strcpy(field.UserID,"2000052") ;
-	        iResult :=m_api->ReqSettlementInfoConfirm(&field, 11)
+            std::strcpy(field.InvestorID,"2000052") ;
+	        m_api->ReqSettlementInfoConfirm(&field, 11)
         }
         virtual void OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             CThostFtdcQryInstrumentField field;
-            m_api->ReqQryInstrument(&field);
+            m_api->ReqQryInstrument(&field,12);
         }
         virtual void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             if (pInstrument) {
@@ -42,9 +42,9 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
 int main(){
     
     auto* trader_api=CThostFtdcTraderApi::CreateFtdcTraderApi("")
-    GoTraderSpi* pSpi = new GoMdSpi(api);
+    GoTraderSpi* pSpi = new GoTraderSpi(api);
     std::cout<<"hello world"<<std::endl;
-    trader_api->RegisterSpi(pSpi)                         // 注册事件类
+    trader_api->RegisterSpi(pSpi);                         // 注册事件类
 	trader_api->SubscribePublicTopic(0 /*THOST_TERT_RESTART*/)  // 注册公有流
 	trader_api->SubscribePrivateTopic(0 /*THOST_TERT_RESTART*/) // 注册私有流
 	trader_api->RegisterFront(CTP.TraderFront)
