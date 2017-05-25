@@ -25,7 +25,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             CThostFtdcSettlementInfoConfirmField field;
             std::strcpy(field.BrokerID,"0189");
             std::strcpy(field.InvestorID,"2000052") ;
-	        m_api->ReqSettlementInfoConfirm(&field, 11)
+	        m_api->ReqSettlementInfoConfirm(&field, 11);
         }
         virtual void OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             CThostFtdcQryInstrumentField field;
@@ -41,13 +41,13 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
 };
 int main(){
     
-    auto* trader_api=CThostFtdcTraderApi::CreateFtdcTraderApi("")
-    GoTraderSpi* pSpi = new GoTraderSpi(api);
+    CThostFtdcTraderApi* trader_api=CThostFtdcTraderApi::CreateFtdcTraderApi("")
+    GoTraderSpi* pSpi = new GoTraderSpi(trader_api);
     std::cout<<"hello world"<<std::endl;
     trader_api->RegisterSpi(pSpi);                         // 注册事件类
 	trader_api->SubscribePublicTopic(0 /*THOST_TERT_RESTART*/)  // 注册公有流
 	trader_api->SubscribePrivateTopic(0 /*THOST_TERT_RESTART*/) // 注册私有流
-	trader_api->RegisterFront(CTP.TraderFront)
+	trader_api->RegisterFront("tcp://101.230.8.33:41205")
 	trader_api->Init()
 
 	trader_api->Join()
