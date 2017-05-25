@@ -28,10 +28,12 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
 	        m_api->ReqSettlementInfoConfirm(&field, 11);
         }
         virtual void OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
+              std::cout<<"OnRspSettlementInfoConfirm"<<nRequestID<<std::endl;
             CThostFtdcQryInstrumentField field;
             m_api->ReqQryInstrument(&field,12);
         }
         virtual void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
+            std::cout<<"OnRspQryInstrument"<<nRequestID<<std::endl;
             if (pInstrument) {
                 std::cout<<pInstrument->InstrumentID<<std::endl;
             }
