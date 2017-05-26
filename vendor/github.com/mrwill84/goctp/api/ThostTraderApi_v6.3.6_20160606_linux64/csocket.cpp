@@ -23,7 +23,7 @@ bool connect_to(const int & sockfd, const std::string& ip_addr, const int& port)
    int rc = connect(sockfd,
                 (struct sockaddr *)&sa,
                 sizeof(struct sockaddr_in));
-   return rc!=0;
+   return rc==0;
 }
 
 bool send_to(const int & sockfd, const char* buffer, int len){
