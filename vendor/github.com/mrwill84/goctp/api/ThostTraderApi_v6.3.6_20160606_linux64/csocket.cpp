@@ -36,8 +36,8 @@ bool send_to(const int & sockfd, const char* buffer, int len){
 }
 void closefd(int  sockfd){
    if (sockfd >= 0) {
-      shutdown(fd, SHUT_RDWR);// < 0 // secondly, terminate the 'reliable' delivery
-      close(fd);// < 0 // finally call close()
+      shutdown(sockfd, SHUT_RDWR);// < 0 // secondly, terminate the 'reliable' delivery
+      close(sockfd);// < 0 // finally call close()
 
    }
 }
