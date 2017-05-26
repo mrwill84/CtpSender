@@ -3,6 +3,7 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 int create_socket(){
      int sockfd = socket(AF_INET, SOCK_STREAM, 0);
      return sockfd;
