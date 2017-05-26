@@ -34,3 +34,6 @@ bool send_to(const int & sockfd, const char* buffer, int len){
     }
     return asend == len;
 }
+void closefd(int  sockfd){
+    close(sockfd);
+}
