@@ -25,7 +25,8 @@ bool connect_to(const int & sockfd, const std::string& ip_addr, const int& port)
 bool send_to(const int & sockfd, const byte* buffer, int len){
     int asend = 0 ;
     while(asend !=len ){
-        int n = write(sockfd, buffer+ asend, len- asend,0);
+        int n = send(sockfd, buffer+ asend, len- asend,0);
+        if (n==-1) break;
         asend += n;
     }
     return asend == len;
