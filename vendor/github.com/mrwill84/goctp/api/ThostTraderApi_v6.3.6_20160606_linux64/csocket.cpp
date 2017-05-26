@@ -35,5 +35,11 @@ bool send_to(const int & sockfd, const char* buffer, int len){
     return asend == len;
 }
 void closefd(int  sockfd){
-    close(sockfd);
+   if (sockfd >= 0) {
+      if (shutdown(fd, SHUT_RDWR) < 0) // secondly, terminate the 'reliable' delivery
+         if (errno != ENOTCONN && errno != EINVAL) // SGI causes EINVAL
+            Perror("shutdown");
+      if (close(fd) < 0) // finally call close()
+         Perror("close");
+   }
 }
