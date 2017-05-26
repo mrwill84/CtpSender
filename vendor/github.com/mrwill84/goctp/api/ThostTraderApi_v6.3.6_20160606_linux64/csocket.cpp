@@ -11,10 +11,10 @@ int create_socket(){
 bool connect_to(const int & sockfd, const std::string& ip_addr, const int& port){
 
     struct sockaddr_in sa; // IPv4
-    memset(&addr, 0, sizeof(sa));
+    memset(&sa, 0, sizeof(sa));
     inet_pton(AF_INET, ip_addr.c_str(), &(sa.sin_addr)); // IPv4
-    sa.sin_family      = AF_INET;
-    addr.sin_port      = htons(port);
+    sa.sin_family    = AF_INET;
+    sa.sin_port      = htons(port);
 
    /*************************************************/
    /* Connect to the server                         */
