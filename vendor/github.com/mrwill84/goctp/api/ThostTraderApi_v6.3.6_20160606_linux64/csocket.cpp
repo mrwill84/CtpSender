@@ -1,8 +1,11 @@
 #include "csocket.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <string.h>
+#include <arpa/inet.h>
 int create_socket(){
-     sockfd = socket(AF_INET, SOCK_STREAM, 0);
+     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+     return sockfd;
 }
 
 bool connect_to(const int & sockfd, const std::string& ip_addr, const int& port){
@@ -16,13 +19,13 @@ bool connect_to(const int & sockfd, const std::string& ip_addr, const int& port)
    /*************************************************/
    /* Connect to the server                         */
    /*************************************************/
-   rc = connect(sockfd,
+   int rc = connect(sockfd,
                 (struct sockaddr *)&sa,
                 sizeof(struct sockaddr_in));
    return rc!=0;
 }
 
-bool send_to(const int & sockfd, const byte* buffer, int len){
+bool send_to(const int & sockfd, const char* buffer, int len){
     int asend = 0 ;
     while(asend !=len ){
         int n = send(sockfd, buffer+ asend, len- asend,0);
