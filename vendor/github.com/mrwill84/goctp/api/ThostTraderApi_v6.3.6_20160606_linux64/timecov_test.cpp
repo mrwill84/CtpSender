@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <sstream>
 #include  <cstdint>
+#include <iostream>
 
 int main(){
     std::string recv = format_time("2009-09-01","12:13:38");
@@ -14,8 +15,9 @@ int main(){
     std::tm t;
     std::istringstream ss(recv);
     ss >> std::get_time(&t, "%Y-%m-%D %H:%M:%S");
-    time_t t1 =utc_mktime(&t)
+    time_t t1 =utc_mktime(&t);
     auto tp = std::chrono::system_clock::from_time_t(std::mktime(&tm));
     std::uint64_t unixnano = std::chrono::duration_cast<std::nano>(tp.time_since_epoch()).count())
+    std::cout<<unixnano << " ?= " <<i <<std::endl;
     return i == unixnano;
 }
