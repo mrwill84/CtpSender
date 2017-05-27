@@ -2,9 +2,10 @@
 #include <string>
 #include <ctime>
 #include <chrono>
+#include <assert.h>
 int main(){
     std::string recv = format_time("2009-09-01","12:13:38");
-    ASSERT(recv == "2009-09-01 12:13:38");
+    assert(recv == "2009-09-01 12:13:38");
     unint64 i = 1251807218000000450LL;
     std::tm t;
     std::istringstream ss(input);
