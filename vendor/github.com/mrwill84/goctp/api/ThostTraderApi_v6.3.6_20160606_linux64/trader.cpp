@@ -99,7 +99,7 @@ int main(){
 	trader_api->SubscribePrivateTopic(THOST_TERT_RESTART /*THOST_TERT_RESTART*/); // 注册私有流
 	trader_api->RegisterFront((char*)CTPAddress.c_str());
 	trader_api->Init();
-
+    
 	trader_api->Join();
 	 
     return 0;
