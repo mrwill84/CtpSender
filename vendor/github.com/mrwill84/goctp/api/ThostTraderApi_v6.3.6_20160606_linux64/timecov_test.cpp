@@ -3,10 +3,12 @@
 #include <ctime>
 #include <chrono>
 #include <assert.h>
+#include  <cstdint>
+
 int main(){
     std::string recv = format_time("2009-09-01","12:13:38");
     assert(recv == "2009-09-01 12:13:38");
-    unint64 i = 1251807218000000450LL;
+    uint64_t i = UINT64_C(1251807218000000450);
     std::tm t;
     std::istringstream ss(input);
     ss >> std::get_time(&t, "%Y-%m-%D %H:%M:%S");
