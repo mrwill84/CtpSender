@@ -98,6 +98,7 @@ int main(){
 	trader_api->SubscribePublicTopic(THOST_TERT_RESTART /*THOST_TERT_RESTART*/);  // 注册公有流
 	trader_api->SubscribePrivateTopic(THOST_TERT_RESTART /*THOST_TERT_RESTART*/); // 注册私有流
 	trader_api->RegisterFront((char*)CTPAddress.c_str());
+    std::cout<<"start Init"<<std::endl;
 	trader_api->Init();
     std::cout<<"start blocking"<<std::endl;
 	trader_api->Join();
