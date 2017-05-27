@@ -61,6 +61,9 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
                         m_of.open("instrument",std::ios::trunc);
                     }
                     m_of<<pInstrument->InstrumentID<<std::endl;
+                    if (bIsLast){
+                        m_api->Release();
+                    }
                 }
             }
         }
@@ -71,7 +74,18 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
 
 int main(){
     
+    BrokerID = getenv("BrokerID");
+    UserID = getenv("UserID");
+    Password = getenv("Password");
+    CTPAddress = getenv("CTPAddress");
+    std::cout<<"BrokerID"<<BrokerID<<std::endl;
+    std::cout<<"UserID"<<UserID<<std::endl;
 
+    if (Password.length()>0){
+        std::cout<<"Password"<<"***"<<std::endl;
+    }
+    
+    std::cout<<"CTPAddress"<<CTPAddress<<std::endl;
     BrokerID = getenv("BrokerID");
     UserID = getenv("UserID");
     Password = getenv("Password");
@@ -86,6 +100,6 @@ int main(){
 	trader_api->Init();
 
 	trader_api->Join();
-	trader_api->Release();
+	 
     return 0;
 }
