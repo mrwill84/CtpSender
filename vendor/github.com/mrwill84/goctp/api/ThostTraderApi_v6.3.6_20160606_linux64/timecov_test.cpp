@@ -15,6 +15,6 @@ int main(){
     ss >> std::get_time(&t, "%Y-%m-%D %H:%M:%S");
     time_t t1 =utc_mktime(&t)
     auto tp = std::chrono::system_clock::from_time_t(std::mktime(&tm));
-    std::uint64_t unixnano = std::chrono::duration_cast<std::chrono::nano>(tp.time_since_epoch()).count())
+    std::uint64_t unixnano = std::chrono::duration_cast<std::nano>(tp.time_since_epoch()).count())
     return i == unixnano;
 }
