@@ -8,7 +8,7 @@
 int main(){
     std::string recv = format_time("2009-09-01","12:13:38");
     assert(recv == "2009-09-01 12:13:38");
-    uint64_t i = UINT64_C(1251807218000000450);
+    std::uint64_t i = UINT64_C(1251807218000000450);
     std::tm t;
     std::istringstream ss(input);
     ss >> std::get_time(&t, "%Y-%m-%D %H:%M:%S");
