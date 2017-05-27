@@ -16,7 +16,8 @@ int main(){
     std::istringstream ss(recv);
     ss >> std::get_time(&t, "%Y-%m-%D %H:%M:%S");
     time_t t1 =utc_mktime(&t);
-    auto tp = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+     std::cout<<"utc_mktime: " <<t1 <<std::endl;
+    auto tp = std::chrono::system_clock::from_time_t(std::mktime(&t));
     std::uint64_t unixnano = std::chrono::duration_cast<std::nano>(tp.time_since_epoch()).count())
     std::cout<<unixnano << " ?= " <<i <<std::endl;
     return i == unixnano;
