@@ -31,11 +31,11 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
         }
         bool IsError(CThostFtdcRspInfoField* pRspInfo){
             if (pRspInfo!=NULL) { return true; }
-            bResult := (pRspInfo->ErrorID != 0)
+            bool bResult = (pRspInfo->ErrorID != 0);
             if bResult {
                 std::cerr<<"ErrorID = " << pRspInfo->ErrorID <<", ErrorMsg = " <<pRspInfo->ErrorMsg<<std::endl;
             }
-            return bResult
+            return bResult;
         }
         virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             if ( !IsError(pRspInfo) ){
@@ -60,7 +60,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
                     {
                         m_of.open("instrument",std::ios::trunc);
                     }
-                    of<<pInstrument->InstrumentID<<std::endl;
+                    m_of<<pInstrument->InstrumentID<<std::endl;
                 }
             }
         }
