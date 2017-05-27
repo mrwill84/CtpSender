@@ -18,7 +18,7 @@ int main(){
     time_t t1 =utc_mktime(&t);
     // std::cout<<"utc_mktime: " <<t1 <<std::endl;
     auto tp = std::chrono::system_clock::from_time_t(std::mktime(&t));
-    std::uint64_t unixnano = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()).count();
+    std::uint64_t unixnano = std::chrono::duration_cast<std::chrono::nanoseconds>(tp.time_since_epoch()).count();
     std::cout<<unixnano << " ?= " <<i <<std::endl;
     return i == unixnano;
 }
