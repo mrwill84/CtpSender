@@ -23,6 +23,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
         }
 
         virtual void OnFrontConnected(){
+            std::cout<<"OnFrontConnected"<<std::endl;
             CThostFtdcReqUserLoginField field;
             std::strcpy(field.BrokerID,BrokerID.c_str()) ;
             std::strcpy(field.UserID,UserID.c_str()) ;
