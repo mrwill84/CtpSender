@@ -11,5 +11,7 @@ std::string format_time(const std::string& date, const std::string& time){
            // time_str += sprintf(buf,".4f",UpdateMillisec/1000.0)
             return time_str;
 }
-
+ time_t utc_mktime(struct tm *t){
+            return mktime(t) + timezone;
+} 
 #endif
