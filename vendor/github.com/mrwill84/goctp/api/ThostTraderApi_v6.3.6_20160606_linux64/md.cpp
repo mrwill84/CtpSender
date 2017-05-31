@@ -42,24 +42,29 @@ class GoMdSpi: public CThostFtdcMdSpi{
             m_api->ReqUserLogin(&field,10);
             //m_api->SubscribeMarketData(context,2);
         }
+         bool IsError(CThostFtdcRspInfoField* pRspInfo){
+            if (pRspInfo==NULL) { return false; }
+            bool bResult = (pRspInfo->ErrorID != 0);
+            if (bResult ){
+                std::cout<<"ErrorID = " << pRspInfo->ErrorID <<", ErrorMsg = " <<pRspInfo->ErrorMsg<<std::endl;
+            }
+            return bResult;
+        }
         virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             std::cout<<"OnRspUserLogin"<<nRequestID<<std::endl;
-
+            if (IsError(pRspInfo)) return ;
             std::ifstream filein("instrument");
 
             for (std::string line; std::getline(filein, line); )
             {
-               char buf[1][64]={0};
-               std::cout <<line <<std::endl;
+               char buf[1][64]={0};      
                std::strcpy(buf[0],line.c_str());
-               std::cout <<buf[0] <<std::endl;
-               m_api->SubscribeMarketData((char**)buf[0],1);
-               std::cout <<"SubscribeMarketData" <<std::endl;
+               m_api->SubscribeMarketData((char**)buf ,1);
             }
         }
         
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
-   
+           std::cout <<"OnRtnDepthMarketData"<<std::endl;
            std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->UpdateTime);
            std::cout<<"daytime: " <<daytime << std::endl;
            std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);
