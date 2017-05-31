@@ -34,7 +34,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             m_api->ReqUserLogin(&field,10);
         }
         bool IsError(CThostFtdcRspInfoField* pRspInfo){
-            if (pRspInfo!=NULL) { return true; }
+            if (pRspInfo==NULL) { return false; }
             bool bResult = (pRspInfo->ErrorID != 0);
             if (bResult ){
                 std::cout<<"ErrorID = " << pRspInfo->ErrorID <<", ErrorMsg = " <<pRspInfo->ErrorMsg<<std::endl;
