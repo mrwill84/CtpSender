@@ -28,6 +28,9 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             std::strcpy(field.BrokerID,BrokerID.c_str()) ;
             std::strcpy(field.UserID,UserID.c_str()) ;
             std::strcpy(field.Password,Password.c_str() );
+            std::cout <<BrokerID << std::endl
+                      <<UserID << std::endl
+                      <<Password << std::endl;
             m_api->ReqUserLogin(&field,10);
         }
         bool IsError(CThostFtdcRspInfoField* pRspInfo){
