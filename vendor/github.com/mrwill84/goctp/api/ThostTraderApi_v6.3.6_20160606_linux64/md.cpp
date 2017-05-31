@@ -54,6 +54,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
                std::strcpy(buf[0],line.c_str());
                 std::cout <<buf[0] <<std::endl;
                m_api->SubscribeMarketData((char**)buf,1);
+               std::cout <<"SubscribeMarketData" <<std::endl;
             }
         }
         
