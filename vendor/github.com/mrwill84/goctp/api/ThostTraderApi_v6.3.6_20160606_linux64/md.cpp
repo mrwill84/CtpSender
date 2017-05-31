@@ -57,13 +57,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
    
            std::string daytime= format_time(pDepthMarketData);
-           std::tm t;
-           std::istringstream ss(input);
-           ss >> std::get_time(&t, "%Y-%m-%D %H:%M:%S");
-           time_t t1 =utc_mktime(&t)
-           auto tp = std::chrono::system_clock::from_time_t(std::mktime(&tm));
-           uint64 unixnano = std::chrono::duration_cast<std::chrono::nano>(tp.time_since_epoch()).count())
-
+           std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);
            char buf[512]={0};
            sprintf(buf,json_format[0],format_time(pDepthMarketData),unixnano 
            ,pDepthMarketData->InstrumentID, pDepthMarketData->ExchangeID,pDepthMarketData->ExchangeInstID,
@@ -80,7 +74,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
            AskPrice3, AskVolume3,
            AskPrice4, AskVolume4,
            AskPrice5, AskVolume5,AveragePrice);
-
+           std::cout<<buf<<std::endl;
         };
         time_t utc_mktime(struct tm *t)
         {
