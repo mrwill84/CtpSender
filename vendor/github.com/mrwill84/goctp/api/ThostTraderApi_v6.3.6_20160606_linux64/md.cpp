@@ -45,7 +45,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
         virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
             std::cout<<"OnRspUserLogin"<<nRequestID<<std::endl;
 
-            std::ifstream filein("instrument.csv");
+            std::ifstream filein("instrument");
 
             for (std::string line; std::getline(filein, line); )
             {
