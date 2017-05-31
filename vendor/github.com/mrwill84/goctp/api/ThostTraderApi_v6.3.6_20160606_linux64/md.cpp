@@ -59,7 +59,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
            std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->TThostFtdcTimeType);
            std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);
            char buf[512]={0};
-           sprintf(buf,json_format[0],daytime.c_str(),unixnano 
+           sprintf(buf,json_format[0],daytime.c_str(),unixnano,unixnano
            ,pDepthMarketData->InstrumentID, pDepthMarketData->ExchangeID,pDepthMarketData->ExchangeInstID,
            pDepthMarketData->LastPrice,pDepthMarketData->PreSettlementPrice ,pDepthMarketData->PreClosePrice,
            pDepthMarketData->PreOpenInterest,pDepthMarketData->OpenPrice,pDepthMarketData->HighestPrice ,
