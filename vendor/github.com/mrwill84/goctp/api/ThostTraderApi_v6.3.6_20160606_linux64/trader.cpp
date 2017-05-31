@@ -39,6 +39,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             return bResult;
         }
         virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
+            std::cout<<"OnRspUserLogin"<<std::endl;
             if ( !IsError(pRspInfo) ){
                  CThostFtdcSettlementInfoConfirmField field;
                  std::strcpy(field.BrokerID,BrokerID.c_str());
@@ -47,6 +48,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             }
         }
         virtual void OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
+             std::cout<<"OnRspUserLogin"<<std::endl;
              if ( !IsError(pRspInfo) ){
                 CThostFtdcQryInstrumentField field;
                 memset(&field,0,sizeof(CThostFtdcQryInstrumentField));
@@ -54,7 +56,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
              }
         }
         virtual void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
-            //std::cout<<"OnRspQryInstrument"<<nRequestID<<std::endl;
+            std::cout<<"OnRspQryInstrument"<<nRequestID<<std::endl;
             if ( !IsError(pRspInfo) ){
                  if (pInstrument) {
                     if (!m_of)
