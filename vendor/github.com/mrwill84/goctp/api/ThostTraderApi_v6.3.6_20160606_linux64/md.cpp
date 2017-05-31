@@ -50,8 +50,9 @@ class GoMdSpi: public CThostFtdcMdSpi{
             for (std::string line; std::getline(filein, line); )
             {
                char buf[1][64]={0};
+               std::cout <<line <<std::endl;
                std::strcpy(buf[0],line.c_str());
-               m_api->SubscribeMarketData(buf,1);
+               m_api->SubscribeMarketData((char**)buf,1);
             }
         }
         
