@@ -56,30 +56,30 @@ class GoMdSpi: public CThostFtdcMdSpi{
         
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
    
-           std::string daytime= format_time(pDepthMarketData);
+           std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->TThostFtdcTimeType);
            std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);
            char buf[512]={0};
            sprintf(buf,json_format[0],format_time(pDepthMarketData),unixnano 
            ,pDepthMarketData->InstrumentID, pDepthMarketData->ExchangeID,pDepthMarketData->ExchangeInstID,
-           LastPrice,PreSettlementPrice ,PreClosePrice,PreOpenInterest,OpenPrice,HighestPrice ,LowestPrice ,
-           Volume ,Turnover ,OpenInterest ,ClosePrice ,SettlementPrice,UpperLimitPrice ,LowerLimitPrice ,
-           PreDelta ,CurrDelta,
-           BidPrice1, BidVolume1,
-           BidPrice2, BidVolume2,
-           BidPrice3, BidVolume3,
-           BidPrice4, BidVolume4,
-           BidPrice5, BidVolume5,
-           AskPrice1, AskVolume1,
-           AskPrice2, AskVolume2,
-           AskPrice3, AskVolume3,
-           AskPrice4, AskVolume4,
-           AskPrice5, AskVolume5,AveragePrice);
+           pDepthMarketData->LastPrice,pDepthMarketData->PreSettlementPrice ,pDepthMarketData->PreClosePrice,
+           pDepthMarketData->PreOpenInterest,pDepthMarketData->OpenPrice,pDepthMarketData->HighestPrice ,
+           pDepthMarketData->LowestPrice,
+           pDepthMarketData->Volume ,pDepthMarketData->Turnover ,pDepthMarketData->OpenInterest ,
+           pDepthMarketData->ClosePrice ,pDepthMarketData->SettlementPrice,pDepthMarketData->UpperLimitPrice ,
+           pDepthMarketData->LowerLimitPrice ,
+           pDepthMarketData->PreDelta ,pDepthMarketData->CurrDelta,
+           pDepthMarketData->BidPrice1, pDepthMarketData->BidVolume1,
+           pDepthMarketData->BidPrice2, pDepthMarketData->BidVolume2,
+           pDepthMarketData->BidPrice3, pDepthMarketData->BidVolume3,
+           pDepthMarketData->BidPrice4, pDepthMarketData->BidVolume4,
+           pDepthMarketData->BidPrice5, pDepthMarketData->BidVolume5,
+           pDepthMarketData->AskPrice1, pDepthMarketData->AskVolume1,
+           pDepthMarketData->AskPrice2, pDepthMarketData->AskVolume2,
+           pDepthMarketData->AskPrice3, pDepthMarketData->AskVolume3,
+           pDepthMarketData->AskPrice4, pDepthMarketData->AskVolume4,
+           pDepthMarketData->AskPrice5, pDepthMarketData->AskVolume5,pDepthMarketData->AveragePrice);
            std::cout<<buf<<std::endl;
         };
-        time_t utc_mktime(struct tm *t)
-        {
-            return mktime(t) + timezone;
-        } 
     private:
         CThostFtdcMdApi * m_api;
 };
