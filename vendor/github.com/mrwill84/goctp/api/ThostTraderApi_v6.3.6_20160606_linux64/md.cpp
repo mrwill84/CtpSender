@@ -51,15 +51,17 @@ class GoMdSpi: public CThostFtdcMdSpi{
             {
                char buf[1][64]={0};
                std::strcpy(buf[0],line.c_str());
-               m_api->SubscribeMarketData((char**)buf,1);
+               m_api->SubscribeMarketData(buf,1);
             }
         }
         
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
    
            std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->UpdateTime);
+           std::cout<<"daytime: " <<daytime << std::endl;
            std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);
-           char buf[512]={0};
+           std::cout<<"unixnano: " <<unixnano << std::endl;
+           char buf[1024]={0};
            sprintf(buf,json_format[0],daytime.c_str(),unixnano,unixnano
            ,pDepthMarketData->InstrumentID, pDepthMarketData->ExchangeID,pDepthMarketData->ExchangeInstID,
            pDepthMarketData->LastPrice,pDepthMarketData->PreSettlementPrice ,pDepthMarketData->PreClosePrice,
