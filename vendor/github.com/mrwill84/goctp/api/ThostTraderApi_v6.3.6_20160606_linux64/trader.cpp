@@ -37,7 +37,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             if (pRspInfo!=NULL) { return true; }
             bool bResult = (pRspInfo->ErrorID != 0);
             if (bResult ){
-                std::cerr<<"ErrorID = " << pRspInfo->ErrorID <<", ErrorMsg = " <<pRspInfo->ErrorMsg<<std::endl;
+                std::cout<<"ErrorID = " << pRspInfo->ErrorID <<", ErrorMsg = " <<pRspInfo->ErrorMsg<<std::endl;
             }
             return bResult;
         }
