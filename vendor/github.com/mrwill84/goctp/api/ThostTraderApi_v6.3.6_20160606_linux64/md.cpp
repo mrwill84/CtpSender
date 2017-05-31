@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <sstream>
+#include <fstream>
 #include <ctime>
 #include <iomanip>
 #include "timecov.h"
