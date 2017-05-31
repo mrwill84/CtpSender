@@ -46,9 +46,9 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
             if ( !IsError(pRspInfo) ){
                  CThostFtdcSettlementInfoConfirmField field;
                  std::strcpy(field.BrokerID,BrokerID.c_str());
-                 std::strcpy(field.InvestorID,BrokerID.c_str()) ;
+                 std::strcpy(field.InvestorID,UserID.c_str()) ;
                  std::cout <<BrokerID << std::endl
-                      <<BrokerID << std::endl ;
+                      <<UserID << std::endl ;
                  m_api->ReqSettlementInfoConfirm(&field, 11);
             }
         }
