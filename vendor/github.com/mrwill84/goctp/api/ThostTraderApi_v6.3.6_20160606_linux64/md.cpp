@@ -12,7 +12,7 @@
 #define MARKET_DATA 0
 
 const char* json_format[]={
-    "{ tradingTime:\"%s\",timestamp:%"PRIu64", recv_timestamp:%"PRIu64", instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"\", "
+    "{ tradingTime:\"%s\",timestamp:%" PRIu64 ", recv_timestamp:%" PRIu64 ", instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"\", "
     "lastPrice:%g, preSettlementPrice:%g, preClosePrice:%g, preOpenInterest:%g, "
     "openPrice:%g, highestPrice:%g, lowestPrice:%g, volume:%g, turnover:%g, "
     "openInterest:%g, closePrice:%g, settlementPrice:%g, upperLimitPrice:%g, lowerLimitPrice:%g, "
