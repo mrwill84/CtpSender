@@ -75,7 +75,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
             std::cout<<pDepthMarketData->InstrumentID
                     << pDepthMarketData->TradingDay
                     <<pDepthMarketData->UpdateTime<<std::endl;
-           std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->UpdateTime);    
+           std::string daytime= format_time(m_tradedate,pDepthMarketData->UpdateTime);    
            std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);  
             
            char buf[1024]={0};
