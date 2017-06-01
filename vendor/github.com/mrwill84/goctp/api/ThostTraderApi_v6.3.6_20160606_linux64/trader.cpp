@@ -79,20 +79,23 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
         std::ofstream         m_of;// ("instrument",std::ios::app);
         CThostFtdcTraderApi * m_api;
 };
+void signalHandler( int signum ) {
+   cout << "Interrupt signal (" << signum << ") received.\n";
+ 
+   exit(signum);  
 
+}
 int main(){
-    
+    std::signal(SIGINT, signalHandler); 
     BrokerID = getenv("BrokerID");
     UserID = getenv("UserID");
     Password = getenv("Password");
     CTPAddress = getenv("CTPAddress");
     std::cout<<"BrokerID"<<BrokerID<<std::endl;
     std::cout<<"UserID"<<UserID<<std::endl;
-
     if (Password.length()>0){
         std::cout<<"Password"<<"***"<<std::endl;
     }
-    
     std::cout<<"CTPAddress"<<CTPAddress<<std::endl;
     
  
@@ -104,8 +107,11 @@ int main(){
 	trader_api->RegisterFront((char*)CTPAddress.c_str());
     std::cout<<"start Init"<<std::endl;
 	trader_api->Init();
-    std::cout<<"start blocking"<<std::endl;
-	trader_api->Join();
+    while( true){
+        sleep(2);
+    }
+    //std::cout<<"start blocking"<<std::endl;
+	//trader_api->Join();
 	 
     return 0;
 }
