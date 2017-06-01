@@ -71,7 +71,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
            char buf[1024]={0};
            sprintf(buf,json_format[0],
            daytime.c_str(),
-           unixnano,unixnano
+           unixnano,utc_now()
            ,pDepthMarketData->InstrumentID, 
            pDepthMarketData->ExchangeID,
            pDepthMarketData->ExchangeInstID,
