@@ -12,7 +12,7 @@
 #define MARKET_DATA 0
 
 const char* json_format[]={
-    "{ tradingTime:\"%s\",timestamp:%" PRIu64 ", recv_timestamp:%" PRIu64 ", instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"\", "
+    "{ tradingTime:\"%s\",timestamp:%" PRIu64 ", recv_timestamp:%" PRIu64 ", instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"%s\", "
     "lastPrice:%g, preSettlementPrice:%g, preClosePrice:%g, preOpenInterest:%g, "
     "openPrice:%g, highestPrice:%g, lowestPrice:%g, volume:%g, turnover:%g, "
     "openInterest:%g, closePrice:%g, settlementPrice:%g, upperLimitPrice:%g, lowerLimitPrice:%g, "
@@ -69,13 +69,25 @@ class GoMdSpi: public CThostFtdcMdSpi{
            std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->UpdateTime);    
            std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);  
            char buf[1024]={0};
-           sprintf(buf,json_format[0],daytime.c_str(),unixnano,unixnano
-           ,pDepthMarketData->InstrumentID, pDepthMarketData->ExchangeID,pDepthMarketData->ExchangeInstID,
-           pDepthMarketData->LastPrice,pDepthMarketData->PreSettlementPrice ,pDepthMarketData->PreClosePrice,
-           pDepthMarketData->PreOpenInterest,pDepthMarketData->OpenPrice,pDepthMarketData->HighestPrice ,
+           sprintf(buf,json_format[0],
+           daytime.c_str(),
+           unixnano,unixnano
+           ,pDepthMarketData->InstrumentID, 
+           pDepthMarketData->ExchangeID,
+           pDepthMarketData->ExchangeInstID,
+           pDepthMarketData->LastPrice,
+           pDepthMarketData->PreSettlementPrice ,
+           pDepthMarketData->PreClosePrice,
+           pDepthMarketData->PreOpenInterest,
+           pDepthMarketData->OpenPrice,
+           pDepthMarketData->HighestPrice ,
            pDepthMarketData->LowestPrice,
-           pDepthMarketData->Volume ,pDepthMarketData->Turnover ,pDepthMarketData->OpenInterest ,
-           pDepthMarketData->ClosePrice ,pDepthMarketData->SettlementPrice,pDepthMarketData->UpperLimitPrice ,
+           pDepthMarketData->Volume ,
+           pDepthMarketData->Turnover ,
+           pDepthMarketData->OpenInterest ,
+           pDepthMarketData->ClosePrice ,
+           pDepthMarketData->SettlementPrice,
+           pDepthMarketData->UpperLimitPrice ,
            pDepthMarketData->LowerLimitPrice ,
            pDepthMarketData->PreDelta ,pDepthMarketData->CurrDelta,
            pDepthMarketData->BidPrice1, pDepthMarketData->BidVolume1,
