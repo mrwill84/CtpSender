@@ -5,6 +5,7 @@
 #include <string>
 #include <cstdio> 
 #include <csignal>
+#include <unistd.h>
 #include "ThostFtdcTraderApi.h"
  
 std::string BrokerID;
