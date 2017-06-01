@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <cstdio> 
+#include <csignal>
 #include "ThostFtdcTraderApi.h"
  
 std::string BrokerID;
@@ -80,7 +81,7 @@ class GoTraderSpi: public CThostFtdcTraderSpi{
         CThostFtdcTraderApi * m_api;
 };
 void signalHandler( int signum ) {
-   cout << "Interrupt signal (" << signum << ") received.\n";
+   std::cout << "Interrupt signal (" << signum << ") received.\n";
  
    exit(signum);  
 
