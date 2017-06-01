@@ -14,7 +14,7 @@
 const char* json_format[]={
     "{ tradingTime:\"%s\",timestamp:%" PRIu64 ", recv_timestamp:%" PRIu64 ", instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"%s\", "
     "lastPrice:%g, preSettlementPrice:%g, preClosePrice:%g, preOpenInterest:%g, "
-    "openPrice:%g, highestPrice:%g, lowestPrice:%g, volume:%g, turnover:%g, "
+    "openPrice:%g, highestPrice:%g, lowestPrice:%g, volume:%d, turnover:%g, "
     "openInterest:%g, closePrice:%g, settlementPrice:%g, upperLimitPrice:%g, lowerLimitPrice:%g, "
     "bidPrice1:%g, bidVolume1:%g, "
     "bidPrice2:%g, bidVolume2:%g, "
@@ -89,7 +89,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
            pDepthMarketData->SettlementPrice,
            pDepthMarketData->UpperLimitPrice ,
            pDepthMarketData->LowerLimitPrice ,
-           pDepthMarketData->PreDelta ,pDepthMarketData->CurrDelta,
+          // pDepthMarketData->PreDelta ,pDepthMarketData->CurrDelta,
            pDepthMarketData->BidPrice1, pDepthMarketData->BidVolume1,
            pDepthMarketData->BidPrice2, pDepthMarketData->BidVolume2,
            pDepthMarketData->BidPrice3, pDepthMarketData->BidVolume3,
