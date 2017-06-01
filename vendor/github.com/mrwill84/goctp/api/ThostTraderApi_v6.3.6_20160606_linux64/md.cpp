@@ -5,6 +5,7 @@
 #include <fstream>
 #include <ctime>
 #include <iomanip>
+#include <inttypes.h>
 #include "timecov.h"
 #include "ThostFtdcMdApi.h"
 
