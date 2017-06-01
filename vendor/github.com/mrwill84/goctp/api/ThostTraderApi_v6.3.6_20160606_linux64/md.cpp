@@ -12,21 +12,21 @@
 #define MARKET_DATA 0
 
 const char* json_format[]={
-    "{ tradingTime:\"%s\",timestamp:%" PRIu64 ", recv_timestamp:%" PRIu64 ", instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"%s\", "
-    "lastPrice:%g, preSettlementPrice:%g, preClosePrice:%g, preOpenInterest:%g, "
-    "openPrice:%g, highestPrice:%g, lowestPrice:%g, volume:%d, turnover:%g, "
-    "openInterest:%g, closePrice:%g, settlementPrice:%g, upperLimitPrice:%g, lowerLimitPrice:%g, "
-    "bidPrice1:%g, bidVolume1:%d, "
-    "bidPrice2:%g, bidVolume2:%d, "
-    "bidPrice3:%g, bidVolume3:%d, "
-    "bidPrice4:%g, bidVolume4:%d, "
-    "bidPrice5:%g, bidVolume5:%d, "
-    "askPrice1:%g, askVolume1:%d, "
-    "askPrice2:%g, askVolume2:%d, "
-    "askPrice3:%g, askVolume3:%d, "
-    "askPrice4:%g, askVolume4:%d, "
-    "askPrice5:%g, askVolume5:%d, "
-    "averagePrice:%g }"
+    "{ \"tradingTime\":\"%s\",\"timestamp\":%" PRIu64 ", \"recv_timestamp\":%" PRIu64 ", \"instrumentID\":\"%s\", \"exchangeID\":\"%s\",\"ExchangeInstID\":\"%s\", "
+    "\"lastPrice\":%g, \"preSettlementPrice\":%g, \"preClosePrice\":%g, \"preOpenInterest\":%g, "
+    "\"openPrice\":%g, \"highestPrice\":%g, \"lowestPrice\":%g, \"volume\":%d, \"turnover\":%g, "
+    "\"openInterest\":%g, \"closePrice\":%g, \"settlementPrice\":%g, \"upperLimitPrice\":%g, \"lowerLimitPrice\":%g, "
+    "\"bidPrice1\":%g, \"bidVolume1\":%d, "
+    "\"bidPrice2\":%g, \"bidVolume2\":%d, "
+    "\"bidPrice3\":%g, \"bidVolume3\":%d, "
+    "\"bidPrice4\":%g, \"bidVolume4\":%d, "
+    "\"bidPrice5\":%g, \"bidVolume5\":%d, "
+    "\"askPrice1\":%g, \"askVolume1\":%d, "
+    "\"askPrice2\":%g, \"askVolume2\":%d, "
+    "\"askPrice3\":%g, \"askVolume3\":%d, "
+    "\"askPrice4\":%g, \"askVolume4\":%d, "
+    "\"askPrice5\":%g, \"askVolume5\":%d, "
+    "\"averagePrice\":%g }"
 };
 
 class GoMdSpi: public CThostFtdcMdSpi{
