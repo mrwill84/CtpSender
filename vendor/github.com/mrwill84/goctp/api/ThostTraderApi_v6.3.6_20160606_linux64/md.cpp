@@ -105,10 +105,10 @@ class GoMdSpi: public CThostFtdcMdSpi{
            pDepthMarketData->AskPrice5, pDepthMarketData->AskVolume5,pDepthMarketData->AveragePrice);
            int len =std::strlen(buf);
            short t = (short) len+4;
-           send_to(sockdf,(const char*)&t,2);
+           send_to(m_sockfd,(const char*)&t,2);
            t=5;
-           send_to(sockdf,(const char*)&t,2);
-           int rc = send_to(sockdf,buf,len);
+           send_to(m_sockfd,(const char*)&t,2);
+           int rc = send_to(m_sockfd,buf,len);
            //std::cout<<buf<<std::endl;
         };
     private:
