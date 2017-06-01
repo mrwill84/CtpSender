@@ -69,11 +69,12 @@ class GoMdSpi: public CThostFtdcMdSpi{
         }
         
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
-           std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->UpdateTime);    
-           std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);  
-           std::cout<<pDepthMarketData->InstrumentID
+            std::cout<<pDepthMarketData->InstrumentID
                     << pDepthMarketData->TradingDay
                     <<pDepthMarketData->UpdateTime<<std::endl;
+           std::string daytime= format_time(pDepthMarketData->TradingDay,pDepthMarketData->UpdateTime);    
+           std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);  
+            
            char buf[1024]={0};
            sprintf(buf,json_format[0],
            daytime.c_str(),
