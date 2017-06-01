@@ -8,7 +8,7 @@
 #include <inttypes.h>
 #include "timecov.h"
 #include "ThostFtdcMdApi.h"
-
+#include "csocket.h"
 #define MARKET_DATA 0
 
 const char* json_format[]={
@@ -33,6 +33,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
     public:
         GoMdSpi(CThostFtdcMdApi * papi):m_api(papi){
              std::cout<<"GoMdSpi" <<std::endl;
+             m_sockfd =create_socket();
         }
         virtual void OnFrontConnected(){
             std::cout<<"OnFrontConnected" <<std::endl;
@@ -40,6 +41,8 @@ class GoMdSpi: public CThostFtdcMdSpi{
             std::strcpy(field.BrokerID,"0189") ;
             std::strcpy(field.UserID,"2000052") ;
             std::strcpy(field.Password,"276988");
+            bool c = connect_to(m_sockfd,"10.10.0.1",21234);
+            std::cout<<"connect md server: " <<c <<std::endl;
             m_api->ReqUserLogin(&field,10);
             //m_api->SubscribeMarketData(context,2);
         }
@@ -100,10 +103,17 @@ class GoMdSpi: public CThostFtdcMdSpi{
            pDepthMarketData->AskPrice3, pDepthMarketData->AskVolume3,
            pDepthMarketData->AskPrice4, pDepthMarketData->AskVolume4,
            pDepthMarketData->AskPrice5, pDepthMarketData->AskVolume5,pDepthMarketData->AveragePrice);
-           std::cout<<buf<<std::endl;
+           int len =std::strlen(buf);
+           short t = (short) len+4;
+           send_to(sockdf,(const char*)&t,2);
+           t=5;
+           send_to(sockdf,(const char*)&t,2);
+           int rc = send_to(sockdf,buf,len);
+           //std::cout<<buf<<std::endl;
         };
     private:
         CThostFtdcMdApi * m_api;
+        int               m_sockfd;
 };
 
 int main(){
