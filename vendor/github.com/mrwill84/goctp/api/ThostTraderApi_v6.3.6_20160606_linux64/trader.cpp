@@ -94,10 +94,7 @@ int main(){
     }
     
     std::cout<<"CTPAddress"<<CTPAddress<<std::endl;
-    BrokerID = getenv("BrokerID");
-    UserID = getenv("UserID");
-    Password = getenv("Password");
-    CTPAddress = getenv("CTPAddress");
+    
  
     CThostFtdcTraderApi* trader_api=CThostFtdcTraderApi::CreateFtdcTraderApi("");
     GoTraderSpi* pSpi = new GoTraderSpi(trader_api);
