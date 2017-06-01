@@ -34,6 +34,9 @@ class GoMdSpi: public CThostFtdcMdSpi{
         GoMdSpi(CThostFtdcMdApi * papi):m_api(papi){
              std::cout<<"GoMdSpi" <<std::endl;
              m_sockfd =create_socket();
+             std::time_t t = std::time(nullptr);
+             std::tm tm = *std::localtime(&t);
+             m_tradedate=std::put_time(&tm, "%Y%m%d")
         }
         virtual void OnFrontConnected(){
             std::cout<<"OnFrontConnected" <<std::endl;
@@ -118,6 +121,7 @@ class GoMdSpi: public CThostFtdcMdSpi{
     private:
         CThostFtdcMdApi * m_api;
         int               m_sockfd;
+        std::string       m_tradedate;
 };
 
 int main(){
