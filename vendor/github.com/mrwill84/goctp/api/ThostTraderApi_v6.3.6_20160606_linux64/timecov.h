@@ -16,7 +16,6 @@ std::string format_time(const std::string& date, const std::string& time){
 std::uint64_t utc_maketimesmape(const std::string& recv,int millic){
     std::tm t;
     strptime(recv.c_str(),"%Y-%m-%dT%H:%M:%S", &t);
-    std::cout<<"tm_sec"<< t.tm_sec<<std::endl;
     auto tp = std::chrono::system_clock::from_time_t(std::mktime(&t)+28800);
     std::uint64_t unixnano = std::chrono::duration_cast<std::chrono::nanoseconds>(tp.time_since_epoch()).count()+millic*10;
     return unixnano;
