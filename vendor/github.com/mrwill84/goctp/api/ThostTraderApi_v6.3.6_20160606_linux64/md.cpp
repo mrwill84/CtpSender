@@ -11,7 +11,7 @@
 #define MARKET_DATA 0
 
 const char* json_format[]={
-    "{ tradingTime:\"%s\",timestamp:%lld, recv_timestamp:%lld, instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"\", "
+    "{ tradingTime:\"%s\",timestamp:%"PRIu64", recv_timestamp:%"PRIu64", instrumentID:\"%s\", exchangeID:\"%s\",ExchangeInstID:\"\", "
     "lastPrice:%g, preSettlementPrice:%g, preClosePrice:%g, preOpenInterest:%g, "
     "openPrice:%g, highestPrice:%g, lowestPrice:%g, volume:%g, turnover:%g, "
     "openInterest:%g, closePrice:%g, settlementPrice:%g, upperLimitPrice:%g, lowerLimitPrice:%g, "
@@ -57,10 +57,10 @@ class GoMdSpi: public CThostFtdcMdSpi{
 
             for (std::string line; std::getline(filein, line); )
             {
-               char *buf[1][64]={0};      
-               std::strcpy(buf[0],line.c_str());
-               std::cout<< buf <<" " << &buf[0]<<""<<buf[0]<<std::endl;
-               //m_api->SubscribeMarketData((char**)buf ,1);
+               char** ptr = new char*[1];      
+               ptr[0]= (char*)line.c_str();
+               m_api->SubscribeMarketData((char**)buf ,1);
+               delete []ptr;
             }
         }
         
