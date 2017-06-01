@@ -20,7 +20,7 @@ std::uint64_t utc_maketimesmape(const std::string& recv,int millic){
 }
 std::uint64_t utc_now(){
     auto tp = std::chrono::system_clock::now();
-    std::uint64_t unixnano = std::chrono::duration_cast<std::chrono::nanoseconds>(tp.time_since_epoch()).count();
+    std::uint64_t unixnano = std::chrono::duration_cast<std::chrono::nanoseconds>(tp.time_since_epoch()).count()+UINT64_C(28800)*UINT64_C(1000000000);
     return unixnano;
 }
 #endif
