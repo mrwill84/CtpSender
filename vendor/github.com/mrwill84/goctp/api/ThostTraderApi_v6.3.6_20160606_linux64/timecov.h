@@ -6,8 +6,10 @@
 std::string format_time(const std::string& date, const std::string& time){
             std::string time_str(date);
             time_str.insert(6,"-").insert(4,"-");
-            time_str +=" ";
+            time_str +="T";
             time_str += time;
+            time_str +="Z";
+            time_str +="08:00";
             return time_str;
 }
 
