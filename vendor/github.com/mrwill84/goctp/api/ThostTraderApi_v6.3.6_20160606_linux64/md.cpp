@@ -74,9 +74,9 @@ class GoMdSpi: public CThostFtdcMdSpi{
         }
         
         virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) {
-            std::cout<<pDepthMarketData->InstrumentID
-                    << pDepthMarketData->TradingDay
-                    <<pDepthMarketData->UpdateTime<<std::endl;
+           // std::cout<<pDepthMarketData->InstrumentID
+           //         << pDepthMarketData->TradingDay
+            //        <<pDepthMarketData->UpdateTime<<std::endl;
            std::string daytime= format_time(m_tradedate,pDepthMarketData->UpdateTime);    
            std::uint64_t unixnano = utc_maketimesmape(daytime,pDepthMarketData->UpdateMillisec);  
             
